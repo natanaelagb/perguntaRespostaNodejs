@@ -1,0 +1,24 @@
+<%- include("partials/header.ejs"); %>
+<%- include("partials/navbar.ejs"); %>
+<div class="container mt-4">
+    <div class="mb-4 border-bottom border-grey">
+        <h2 class="display-6">Perguntas</h2>
+    </div>
+    
+    <div id="group-card" class="d-flex flex-wrap">
+        <% conteudo.forEach((value)=>{ %>
+        <div class="pe-2 ps-2 mb-3 w-100">
+            <div class="card single-card" onclick="window.location.href = '/pergunta/<%= value.id %>'">
+                <div class="card-header">
+                    <h3 class="mb-0 fw-normal"><%= value.titulo %></h3>
+                </div>
+                <div class="card-body">
+                    <p><%= value.conteudo %></p>
+                    <a href="/pergunta/<%= value.id %>" class="btn btn-primary btn-sm"> Responder </a>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<%- include("partials/footer.ejs"); %>

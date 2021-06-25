@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/navbar.ejs") %>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="mb-0 fw-normal font-monospace"> <%= conteudo.titulo %></h3>
+        </div>
+        <div class="card-body">
+            <div class="ps-4 pe-4 mb-4">
+                <p class="p-2 font-monospace bg-content rounded"><%= conteudo.conteudo %></p>
+            </div>
+            
+  
+            <form method="POST" action="/salvarresposta" >
+                <label class="mb2"> Responda: </label>
+                <textarea class="form-control mb-3" rows="4" name="conteudo" required></textarea>
+                <input type="hidden" name="idPergunta" value="<%= conteudo.id %>">
+                <button type="submit" class="btn btn-primary btn-sm">Responder</button>
+            </form>
+            <hr>
+            <h5 class="fw-normal fs-6 mb-3">
+            <%  if(respostas.length == 0){ %>
+                0 respostas<br><br>Seja o primerio a responder!
+            <% }else if(respostas.length == 1) {%>  
+                1 resposta
+            <%} else { %>
+                <%= respostas.length %> respostas
+            <% } %>
+            </h5>
+            <% respostas.forEach((value)=>{ %>
+            <div class="ps-4 pe-4 mb-4">
+                <p class="p-2 font-monospace bg-content rounded"><%= value.conteudo %></p>
+            </div>
+            <% }) %>
+            
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
